@@ -90,7 +90,7 @@ public class TestSocketIO : MonoBehaviour
 	}
 }
 
-// JSON 전송방법 2
+// JSON 전송방법 2의 Object 생성을 위한 Class
 [Serializable]
 public class JSONData
 {

@@ -16,7 +16,6 @@ public class NetworkManager : MonoBehaviour
     //public SocketIOComponent socket;
     public InputField playerNameInput;
     public GameObject player;
-
     void Awake()
     {
         if (instance == null)
