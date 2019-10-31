@@ -15,27 +15,52 @@ public class ChatNetwork : MonoBehaviour
         socket = go.GetComponent<SocketIOComponent>();
         chatManager = GetComponent<ChatManager>();
 
+        socket.On("join", OnJoin);
         socket.On("open", TestOpen);
         socket.On("error", TestError);
         socket.On("close", TestClose);
 
         socket.On("broadcastMsg", OnBroadcastMsg);
+        socket.On("exitUser", OnExitUser);
     }
 
     #region 송신 이벤트 처리
+    // 새로운 메시지 이벤트 송신
     public void SendNewMsg(string msg)
     {
         Dictionary<string, string> data = new Dictionary<string, string>();
         data.Add("msg", msg);
+        data.Add("userName", GameManager.instance.GetUserName());
         JSONObject jObject = new JSONObject(data);
         socket.Emit("newMsg", jObject);
+    }
+
+    // 새로운 사용자 접속 이벤트 송신
+    public void JoinMsg()
+    {
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        data.Add("userName", GameManager.instance.GetUserName());
+        JSONObject joinData = new JSONObject(data);
+
+        socket.Emit("join", joinData);
     }
     #endregion
 
     #region 수신 이벤트 처리
+    // 새로운 채팅 메시지
     private void OnBroadcastMsg(SocketIOEvent e)
     {
-        chatManager.SendMsgToChat(e.data.GetField("msg").str);
+        chatManager.SendMsgToChat(e.data.GetField("msg").str, e.data.GetField("userName").str);
+    }
+
+    private void OnJoin(SocketIOEvent e)
+    {
+        chatManager.SendMsgToChat("join", e.data.GetField("userName").str);
+    }
+
+    private void OnExitUser(SocketIOEvent e)
+    {
+        chatManager.SendMsgToChat("exit", e.data.GetField("userName").str);
     }
 
     public void TestOpen(SocketIOEvent e)

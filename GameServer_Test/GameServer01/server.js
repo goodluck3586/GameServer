@@ -18,15 +18,7 @@ io.on('connection', function(socket){
   console.log('클라이언트 접속');
   console.log('New connection from ' + socket.request.connection.remoteAddress);
 
-  // 'beep' 이벤트가 수신되면 실행되는 함수
-	socket.on('beep', function(data){
-    console.log('beep 이벤트 발생 : ', data);
-		socket.emit('boop', {serverMsg:"Hello Client"});  // 연결된 클라이언트에 전송
-		io.emit('broadMSG', {broadcastMsg:"Hello everyone"});  // 모든 클라이언트에 전송
-		//socket.broadcast.emit('broadMSG', "broadcast message");
-  });
-
-  socket.on('join', function(data){
+  socket.on('join', function(data){  // data : {userName: "사용자 닉네임}"
     socket.userName = data.userName;
     console.log("새로운 사용자 접속: "+data.userName);
     io.emit('join', {newMsg: "join", userName: data.userName});

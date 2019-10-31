@@ -45,7 +45,7 @@ public class TestSocketIO : MonoBehaviour
 		socket.On("error", TestError);
 		socket.On("close", TestClose);
 
-		StartCoroutine("BeepBoop");  // 코루틴 함수 실행
+		StartCoroutine(BeepBoop());  // 코루틴 함수 실행
 	}
 
 	private IEnumerator BeepBoop()

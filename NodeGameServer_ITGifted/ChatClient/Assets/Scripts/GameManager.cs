@@ -18,10 +18,15 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void SetUserName(string inputText)
+    public void SetUserName(string inputText = "이동윤")
     {
-        userName = inputText;
+        this.userName = inputText;
         print("userName setted: " + userName);
+    }
+
+    public string GetUserName()
+    {
+        return userName;
     }
 
     public void LoadNextScene()

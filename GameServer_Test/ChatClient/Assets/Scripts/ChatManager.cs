@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    public GameObject chatPanel, textPrefab;
     public InputField chatBox;
+    public GameObject chatPanel, textPrefab;
     private ChatNetwork chatNetwork;
 
     void Start()
     {
         chatNetwork = GetComponent<ChatNetwork>();
+        Invoke("JoinRequest", 1f);
+    }
+
+    private void JoinRequest()
+    {
+        chatNetwork.JoinMsg();
     }
 
     void Update()
@@ -35,13 +41,29 @@ public class ChatManager : MonoBehaviour
                 chatBox.ActivateInputField();
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+            chatNetwork.JoinMsg();
     }
 
     // 채팅창에 Text를 추가하는 메서드
-    public void SendMsgToChat(string inputText)
+    public void SendMsgToChat(string inputText, string userName)
     {
         // public static Object Instantiate (Object original, Transform parent);
         GameObject newText = Instantiate(textPrefab, chatPanel.transform);  
-        newText.GetComponent<Text>().text = inputText;
+
+        if(userName != null)
+        {
+            if(inputText == "join")
+                newText.GetComponent<Text>().text = "* " + userName + "님 입장 *";
+            else if(inputText == "exit")
+                newText.GetComponent<Text>().text = "* " + userName + "님 퇴장 *";
+            else
+                newText.GetComponent<Text>().text = userName + " : " + inputText;
+        }
+        else
+        {
+            print("userName이 null값 입니다.");
+        }
     }
 }

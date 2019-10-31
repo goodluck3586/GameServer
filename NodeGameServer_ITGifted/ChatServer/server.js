@@ -7,10 +7,15 @@ console.log("127.0.0.1:4567에서 서버 실행중...");
 io.on('connection', function(socket){
   console.log("클라이언트 접속");
 
-	socket.on('beep', function(data){
-    console.log('beep 이벤트 수신');
-    console.log(data);  // 클라이언트에게 받은 데이터 출력
+	// 새로운 사용자 조인
+	socket.on("join", function(data){
+		console.log("새로운 사용자 조인");
+		io.emit("broadcastJoin", {userName: data.userName});
+	});
 
-		socket.emit('boop', {msg: "Hello Client"});  // 클라이언트로 데이터 전송
+	// 새로운 채팅 메시지 수신
+	socket.on("newMsg", function(data){
+		console.log("newMsg 이벤트 수신 : ", data);
+		io.emit("broadcastMsg", {msg: data.msg, userName: data.userName});
 	});
 })
