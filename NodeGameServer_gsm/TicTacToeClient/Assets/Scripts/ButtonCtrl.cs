@@ -12,7 +12,7 @@ public class ButtonCtrl : MonoBehaviour
     // 버튼이 클릭되었을 때, 마커를 표시하고 버튼을 비활성화 시킨다.
     public void OnClick()
     {
-        buttonText.text = playerMarker;
+        buttonText.text = GameSceneManager.instance.PlayerMark;
         button.interactable = false;  // 버튼 비활성화
     }
 

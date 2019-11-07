@@ -18,6 +18,13 @@ public class NetworkManager : MonoBehaviour
         socket.On("close", TestClose);
         socket.On("waitAnotherUser", OnWaitAnotherUser);
         socket.On("playGame", OnPlayGame);
+        socket.On("responseMark", OnResponseMark);
+    }
+
+    private void OnResponseMark(SocketIOEvent obj)
+    {
+        print($"너의 마크는 {obj.data.GetField("mark").str}이다.");
+        GameSceneManager.instance.PlayerMark = obj.data.GetField("mark").str;
     }
 
     #region 송신 이벤트
@@ -27,6 +34,12 @@ public class NetworkManager : MonoBehaviour
         data.Add("userNickname", GameManager.instance.UserNickname);
         JSONObject jSONObject = new JSONObject(data);
         socket.Emit("join", jSONObject);
+    }
+
+    // 게임을 시작할 때 player가 자신의 mark를 알려달라고 서버에게 요청
+    public void RequestMark()
+    {
+        socket.Emit("requestMark");
     }
     #endregion
 
@@ -58,6 +71,8 @@ public class NetworkManager : MonoBehaviour
             "#####################################################"
         );
     }
+
+    
 
     public void TestError(SocketIOEvent e)
     {

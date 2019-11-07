@@ -1,7 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - ButtonCtrl
     - GameManager
+    - GameSceneManager
     - StartSceneManager
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -24,13 +26,47 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 20
       Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9252}
+    - Class: 114
+      Script: {instanceID: 9344}
+    - Class: 114
+      Script: {instanceID: 9346}
+    - Class: 114
+      Script: {instanceID: 9352}
+    - Class: 114
+      Script: {instanceID: 9358}
+    - Class: 114
+      Script: {instanceID: 9366}
+    - Class: 114
+      Script: {instanceID: 9402}
+    - Class: 114
+      Script: {instanceID: 9404}
+    - Class: 114
+      Script: {instanceID: 13138}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/StartScene.unity:
     - Class: 1
@@ -52,27 +88,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9202}
     - Class: 114
-      Script: {instanceID: 9342}
-    - Class: 114
       Script: {instanceID: 9344}
     - Class: 114
-      Script: {instanceID: 9350}
+      Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9356}
+      Script: {instanceID: 9352}
     - Class: 114
-      Script: {instanceID: 9360}
+      Script: {instanceID: 9358}
     - Class: 114
-      Script: {instanceID: 9364}
+      Script: {instanceID: 9362}
     - Class: 114
       Script: {instanceID: 9366}
     - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9368}
     - Class: 114
       Script: {instanceID: 9402}
     - Class: 114
-      Script: {instanceID: 9412}
+      Script: {instanceID: 9404}
     - Class: 114
-      Script: {instanceID: 9576}
+      Script: {instanceID: 9414}
+    - Class: 114
+      Script: {instanceID: 9578}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -112,6 +148,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: c0eda77cc9d5b565488ae9da2af79173
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ButtonCtrl
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -754,6 +796,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 814284e562af69a985ab7f3a2600bb26
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameSceneManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/StartScene.unity
